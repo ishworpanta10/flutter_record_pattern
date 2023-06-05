@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/data.dart';
+import '../main.dart';
 import '../widgets/widgets.dart';
 
 class DocumentScreen extends StatelessWidget {
@@ -19,13 +20,14 @@ class DocumentScreen extends StatelessWidget {
     //variable pattern :modified is shorthand for modified: modified
     //if you want a new local variable of a different name, you can write modified: localModified instead.
     final blocks = document.getBlocks();
+    final formattedModifiedDate = formatDate(modified);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       body: Column(
         children: [
-          Text('Last modified: $modified'), // Modify from here
+          Text('Last modified: $formattedModifiedDate'),
           Expanded(
             child: ListView.builder(
               itemCount: blocks.length,
