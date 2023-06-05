@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'sealed_class_for_block.dart';
+
 class Document {
   final Map<String, Object?> _json;
   Document() : _json = jsonDecode(documentJson);
@@ -47,20 +49,6 @@ class Document {
   }
 }
 
-class Block {
-  final String type;
-  final String text;
-  Block(this.type, this.text);
-
-  factory Block.fromJson(Map<String, dynamic> json) {
-    if (json case {'type': final type, 'text': final text}) {
-      return Block(type, text);
-    } else {
-      throw const FormatException('Unexpected JSON format');
-    }
-  }
-}
-
 const documentJson = '''
 {
   "metadata": {
@@ -78,7 +66,7 @@ const documentJson = '''
     },
     {
       "type": "checkbox",
-      "checked": false,
+      "checked": true,
       "text": "Learn Dart 3"
     }
   ]
